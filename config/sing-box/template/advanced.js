@@ -13,7 +13,7 @@ let proxies = await produceArtifact({
   produceType: 'internal',
 })
 
-config.inbounds[0].platform.http_PROXY.server_port = parseInt(port)
+config.inbounds[0].platform.http_proxy.server_port = parseInt(port)
 
 config.inbounds[1].listen_port = parseInt(port)
 
