@@ -1,7 +1,7 @@
 const { type, name, port } = $arguments
 const compatible_outbound = {
   tag: 'COMPATIBLE',
-  type: 'REJECT',
+  type: 'block',
 }
 
 let compatible
