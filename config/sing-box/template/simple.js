@@ -1,10 +1,6 @@
 const { type, name, port } = $arguments
-const compatible_outbound = {
-  tag: 'COMPATIBLE',
-  type: 'block',
-}
 
-let compatible
+let compatible_tag = 'REJECT'
 let config = JSON.parse($files[0])
 let proxies = await produceArtifact({
   name,
@@ -27,11 +23,7 @@ config.outbounds.map(i => {
 
 config.outbounds.forEach(outbound => {
   if (Array.isArray(outbound.outbounds) && outbound.outbounds.length === 0) {
-    if (!compatible) {
-      config.outbounds.push(compatible_outbound)
-      compatible = true
-    }
-    outbound.outbounds.push(compatible_outbound.tag);
+    outbound.outbounds.push(compatible_tag);
   }
 });
 
