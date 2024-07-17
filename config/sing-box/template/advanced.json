@@ -234,16 +234,7 @@
     "final": "Final",
     "rules": [
       {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          {
-            "protocol": "dns"
-          },
-          {
-            "port": 53
-          }
-        ],
+        "port": 53,
         "outbound": "DNS"
       },
       {

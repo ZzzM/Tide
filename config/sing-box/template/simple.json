@@ -58,10 +58,6 @@
       {
         "rule_set": "geosite-cn",
         "server": "tb"
-      },
-      {
-        "rule_set": "geosite-category-ads-all",
-        "server": "block"
       }
     ],
     "final": "google",
@@ -111,6 +107,18 @@
       "outbounds": ["DIRECT"]
     },
     {
+      "tag": "Global",
+      "type": "selector",
+      "outbounds": ["Bypass", "DIRECT"],
+      "default": "Bypass"
+    },
+    {
+      "tag": "China",
+      "type": "selector",
+      "outbounds": ["Bypass", "DIRECT"],
+      "default": "DIRECT"
+    },
+    {
       "tag": "Final",
       "type": "selector",
       "outbounds": ["Bypass", "DIRECT"],
@@ -134,16 +142,7 @@
     "final": "Final",
     "rules": [
       {
-        "type": "logical",
-        "mode": "or",
-        "rules": [
-          {
-            "protocol": "dns"
-          },
-          {
-            "port": 53
-          }
-        ],
+        "port": 53,
         "outbound": "DNS"
       },
       {
@@ -152,25 +151,14 @@
       },
       {
         "rule_set": "geosite-geolocation-!cn",
-        "outbound": "Bypass"
+        "outbound": "Global"
       },
       {
         "rule_set": ["geosite-cn", "geoip-cn"],
-        "outbound": "DIRECT"
-      },
-      {
-        "rule_set": "geosite-category-ads-all",
-        "outbound": "REJECT"
+        "outbound": "China"
       }
     ],
     "rule_set": [
-      {
-        "tag": "geosite-category-ads-all",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ads-all.srs",
-        "download_detour": "DIRECT"
-      },
       {
         "tag": "geosite-geolocation-!cn",
         "type": "remote",
