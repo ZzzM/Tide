@@ -108,7 +108,7 @@
     {
       "tag": "Bypass",
       "type": "selector",
-      "outbounds": ["Automatic","Manual"],
+      "outbounds": ["Automatic", "Manual"],
       "default": "Automatic"
     },
     {
@@ -159,9 +159,9 @@
       {
         "type": "logical",
         "mode": "or",
-        "rules":[
+        "rules": [
           {
-            "port":53
+            "port": 53
           },
           {
             "protocol": "dns"
