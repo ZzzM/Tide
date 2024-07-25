@@ -174,7 +174,7 @@
         "outbound": "DIRECT"
       },
       {
-        "rule_set": ["Global"],
+        "rule_set": "Global",
         "outbound": "Global"
       },
       {
