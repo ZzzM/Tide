@@ -259,40 +259,26 @@
       {
         "rule_set": ["China", "ChinaIPs"],
         "outbound": "DIRECT"
-      },
-      {
-        "rule_set": "Advertising",
-        "outbound": "REJECT"
       }
     ],
     "rule_set": [
       {
-        "tag": "Advertising",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/ads.srs",
-        "download_detour": "Bypass"
-      },
-      {
         "tag": "AI",
         "type": "remote",
         "format": "source",
-        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/ai.srs",
-        "download_detour": "Bypass"
+        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/ai.srs"
       },
       {
         "tag": "Apple",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/apple-cn.srs",
-        "download_detour": "Bypass"
+        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/apple-cn.srs"
       },
       {
         "tag": "Google",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/google-cn.srs",
-        "download_detour": "Bypass"
+        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/google-cn.srs"
       },
       {
         "tag": "Microsoft",
@@ -304,43 +290,37 @@
         "tag": "TikTok",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/tiktok.srs",
-        "download_detour": "Bypass"
+        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/tiktok.srs"
       },
       {
         "tag": "Private",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/private.srs",
-        "download_detour": "Bypass"
+        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/private.srs"
       },
       {
         "tag": "PrivateIPs",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/privateip.srs",
-        "download_detour": "Bypass"
+        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/privateip.srs"
       },
       {
         "tag": "Global",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/proxy.srs",
-        "download_detour": "Bypass"
+        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/proxy.srs"
       },
       {
         "tag": "China",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/cn.srs",
-        "download_detour": "Bypass"
+        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/cn.srs"
       },
       {
         "tag": "ChinaIPs",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/cnip.srs",
-        "download_detour": "Bypass"
+        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/cnip.srs"
       }
     ]
   }
