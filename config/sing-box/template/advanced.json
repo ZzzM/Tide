@@ -134,18 +134,19 @@
     {
       "tag": "Apple",
       "type": "selector",
-      "outbounds": ["DIRECT","Bypass"]
+      "outbounds": [
+        "DIRECT",
+        "Bypass"
+      ]
     },
     {
-      "tag": "Google",
+      "tag": "GitHub",
       "type": "selector",
       "outbounds": [
-        "HK",
-        "JP",
-        "US",
-        "KR",
-        "SG"
-      ]
+        "DIRECT",
+        "Bypass"
+      ],
+      "default": "Bypass"
     },
     {
       "tag": "Microsoft",
@@ -159,12 +160,25 @@
       ]
     },
     {
-      "tag": "TikTok",
+      "tag": "Spotify",
+      "type": "selector",
+      "default": "DIRECT",
+      "outbounds": [
+        "HK",
+        "SG",
+        "US",
+        "DIRECT"
+      ]
+    },
+    {
+      "tag": "Twitter",
       "type": "selector",
       "outbounds": [
         "JP",
         "SG",
-        "KR"
+        "KR",
+        "HK",
+        "US"
       ]
     },
     {
@@ -229,98 +243,168 @@
         "outbound": "DNS"
       },
       {
-        "rule_set": ["Private", "PrivateIPs"],
+        "rule_set": [
+          "Private",
+          "PrivateIPs"
+        ],
         "outbound": "DIRECT"
       },
       {
-        "rule_set": ["AI"],
+        "rule_set": [
+          "Google",
+          "GoogleIPs",
+          "OpenAI",
+          "TikTok",
+          "YouTube"
+        ],
         "outbound": "AI"
       },
       {
-        "rule_set": ["Apple"],
+        "rule_set": [
+          "Apple",
+          "AppleIPs"
+        ],
         "outbound": "Apple"
       },
       {
-        "rule_set": ["Google"],
-        "outbound": "Google"
+        "rule_set": [
+          "GitHub"
+        ],
+        "outbound": "GitHub"
       },
       {
-        "rule_set": ["Microsoft"],
+        "rule_set": [
+          "Microsoft"
+        ],
         "outbound": "Microsoft"
       },
       {
-        "rule_set": ["TikTok"],
-        "outbound": "TikTok"
+        "rule_set": [
+          "Spotify"
+        ],
+        "outbound": "Spotify"
+      },
+      {
+        "rule_set": [
+          "Twitter",
+          "TwitterIPs"
+        ],
+        "outbound": "Twitter"
       },
       {
         "rule_set": "Global",
         "outbound": "Bypass"
       },
       {
-        "rule_set": ["China", "ChinaIPs"],
+        "rule_set": [
+          "China",
+          "ChinaIPs"
+        ],
         "outbound": "DIRECT"
       }
     ],
     "rule_set": [
       {
-        "tag": "AI",
-        "type": "remote",
-        "format": "source",
-        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/ai.srs"
-      },
-      {
         "tag": "Apple",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/apple-cn.srs"
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/apple.srs"
+      },
+      {
+        "tag": "AppleIPs",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo-lite/geoip/apple.srs"
+      },
+      {
+        "tag": "GitHub",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/github.srs"
       },
       {
         "tag": "Google",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/google-cn.srs"
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/google.srs"
+      },
+      {
+        "tag": "GoogleIPs",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/google.srs"
       },
       {
         "tag": "Microsoft",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/microsoft-cn.srs"
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/microsoft.srs"
+      },
+      {
+        "tag": "OpenAI",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/openai.srs"
+      },
+      {
+        "tag": "Spotify",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/spotify.srs"
       },
       {
         "tag": "TikTok",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/tiktok.srs"
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/tiktok.srs"
+      },
+      {
+        "tag": "Twitter",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/twitter.srs"
+      },
+      {
+        "tag": "TwitterIPs",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/twitter.srs"
+      },
+      {
+        "tag": "YouTube",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/youtube.srs"
       },
       {
         "tag": "Private",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/private.srs"
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/private.srs"
       },
       {
         "tag": "PrivateIPs",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/privateip.srs"
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/private.srs"
       },
       {
         "tag": "Global",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/proxy.srs"
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/geolocation-!cn.srs"
       },
       {
         "tag": "China",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/cn.srs"
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/cn.srs"
       },
       {
         "tag": "ChinaIPs",
         "type": "remote",
         "format": "binary",
-        "url": "https://raw.githubusercontent.com/DustinWin/ruleset_geodata/sing-box-ruleset/cnip.srs"
+        "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/cn.srs"
       }
     ]
   }
