@@ -167,82 +167,82 @@ rules:
   - MATCH, Final
 
 rule-anchor:
-  classical: &classical {type: http, interval: 86400, behavior: classical, format: text}
-  domain: &domain {type: http, interval: 86400, behavior: domain, format: text}
-  ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: text}
+  c: &c {type: http, interval: 86400, behavior: classical, format: text}
+  d: &d {type: http, interval: 86400, behavior: domain, format: text}
+  i: &i {type: http, interval: 86400, behavior: ipcidr, format: text}
 
 rule-providers:
  
   Apple:
-    <<: *classical
+    <<: *c
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple.list"
 
   AppleDomains:
-    <<: *domain
+    <<: *d
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple_Domain.txt"
 
   Copilot:
-    <<: *classical
+    <<: *c
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Copilot/Copilot.list"
 
 
   Gemini:
-    <<: *classical
+    <<: *c
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Gemini/Gemini.list"
 
   GitHub:
-    <<: *classical
+    <<: *c
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub.list"
 
   Google:
-    <<: *classical
+    <<: *c
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google.list"
 
   Microsoft:
-    <<: *classical
+    <<: *c
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft.list"
   
   OpenAI:
-    <<: *classical
+    <<: *c
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.list"
 
   Spotify:
-    <<: *classical
+    <<: *c
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Spotify/Spotify.list"
 
   TikTok:
-    <<: *classical
+    <<: *c
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TikTok/TikTok.list"
 
   Twitter:
-    <<: *classical
+    <<: *c
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitter/Twitter.list"
 
   Direct:
-    <<: *classical
+    <<: *c
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Direct/Direct.list"
 
   Lan:
-    <<: *classical
+    <<: *c
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Lan/Lan.list"
 
 
   Global:
-    <<: *classical
+    <<: *c
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Global/Global.list"
 
   GlobalDomains:
-    <<: *domain
+    <<: *d
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Global/Global_Domain.txt"
 
   China:
-    <<: *classical
+    <<: *c
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/China/China.list"
 
   ChinaIPs:
-    <<: *ip
+    <<: *i
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaIPs/ChinaIPs.list"
 
   ChinaDomains:
-    <<: *domain
+    <<: *d
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/China/China_Domain.txt"
