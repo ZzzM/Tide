@@ -1,7 +1,15 @@
 const { type, name, port } = $arguments
 
-const sub = /^1$|col/i.test(type) ? 'collection' : 'subscription'
-const url = `https://sub.store/download/${sub}/${name}?target=ClashMeta`
 
-$content = $content.replace(`$url`, url)
+
+const platform = 'ClashMeta'
+
+const proxies = await produceArtifact({
+    name,
+    type: /^1$|col/i.test(type) ? 'collection' : 'subscription',
+    platform: platform,
+    produceType: 'internal'
+})
+
 $content = $content.replace(`$port`, port)
+$content = ProxyUtils.produce(proxies, platform) + '\n\n' + $content
