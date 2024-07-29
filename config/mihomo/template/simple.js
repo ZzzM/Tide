@@ -1,7 +1,5 @@
 const { type, name, port } = $arguments
 
-
-
 const platform = 'ClashMeta'
 
 const proxies = await produceArtifact({
@@ -12,4 +10,4 @@ const proxies = await produceArtifact({
 })
 
 $content = $content.replace(`$port`, port)
-$content = ProxyUtils.produce(proxies, platform) + '\n\n' + $content
+$content = ProxyUtils.produce(proxies, platform) + '\n' + $content
