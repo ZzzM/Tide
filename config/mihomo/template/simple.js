@@ -1,14 +1,7 @@
 const { type, name, port } = $arguments
 
-const yaml = ProxyUtils.yaml.safeLoad($content ?? $files[0])
+const sub = /^1$|col/i.test(type) ? 'collection' : 'subscription'
+const url = 'https://sub.store/download/$sub/$name?target=ClashMeta'
 
-let proxies = await produceArtifact({
-  name,
-  type: /^1$|col/i.test(type) ? 'collection' : 'subscription',
-  platform: 'ClashMeta',
-  produceType: 'internal',
-})
-
-yaml.proxies.unshift(...proxies)
-
-$content = ProxyUtils.yaml.safeDump(yaml)
+$content = $content.replace(`$url`, url)
+$content = $content.replace(`$port`, port)

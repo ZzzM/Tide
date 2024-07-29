@@ -1,1 +1,249 @@
-mixed-port: 7803
+proxy-providers:
+  provider:
+    url: $url
+    type: http
+
+mixed-port: $port
+ipv6: true
+allow-lan: true
+unified-delay: false
+tcp-concurrent: true
+
+find-process-mode: strict
+global-client-fingerprint: chrome
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"
+    - "+.push.apple.com"
+
+tun:
+  enable: true
+  stack: mixed
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+
+dns:
+  enable: true
+  ipv6: true
+  respect-rules: true
+  enhanced-mode: fake-ip
+  fake-ip-filter:
+    - "*"
+    - "+.lan"
+    - "+.local"
+    - "+.market.xiaomi.com"
+  nameserver:
+    - https://120.53.53.53/dns-query
+    - https://223.5.5.5/dns-query
+  proxy-server-nameserver:
+    - https://120.53.53.53/dns-query
+    - https://223.5.5.5/dns-query
+  nameserver-policy:
+    "rule-set:ChinaDomains":
+      - https://120.53.53.53/dns-query
+      - https://223.5.5.5/dns-query
+    "rule-set:GlobalDomains":
+      - "https://dns.cloudflare.com/dns-query"
+      - "https://dns.google/dns-query"
+
+proxy-groups:
+
+  - name: Bypass
+    type: select
+    proxies: [Automatic, Manual]
+
+  - name: Automatic
+    type: url-test
+    include-all: true
+    tolerance: 10
+
+  - name: Manual
+    type: select
+    proxies: [HK, JP, TW, US, SG, KR, DIRECT]
+
+  - name: AI
+    type: select
+    proxies: [JP, TW, US, SG, KR]
+
+  - name: Apple
+    type: select
+    proxies: [Bypass, DIRECT]
+
+  - name: GitHub
+    type: select
+    proxies:  [Bypass, DIRECT]
+
+  - name: Microsoft
+    type: select
+    proxies:  [Bypass, DIRECT]
+
+  - name: Spotify
+    type: select
+    proxies:  [HK, JP, TW, US, SG, KR, DIRECT]
+
+  - name: Twitter
+    type: select
+    proxies: [HK, JP, TW, US, SG, KR]
+
+  - name: Final
+    type: select
+    proxies: [Bypass, DIRECT]
+
+  #分隔,下面是地区分组
+  - name: HK
+    type: select
+    include-all: true
+    filter: "(?i)港|hk|hongkong|hong kong"
+
+  - name: TW
+    type: select
+    include-all: true
+    filter: "(?i)台|tw|taiwan"
+
+  - name: JP
+    type: select
+    include-all: true
+    filter: "(?i)日|jp|japan"
+
+  - name: US
+    type: select
+    include-all: true
+    filter: "(?i)美|us|unitedstates|united states"
+
+  - name: SG
+    type: select
+    include-all: true
+    filter: "(?i)(新|sg|singapore)"
+  
+  - name: KR
+    type: select
+    include-all: true
+    filter: "(?i)韩"
+
+rules:
+
+  - RULE-SET, Direct, DIRECT
+  - RULE-SET, Lan, DIRECT
+
+  - RULE-SET, Apple, Apple
+  - RULE-SET, AppleDomains, Apple
+
+  - RULE-SET, Copilot, AI
+  - RULE-SET, Gemini, AI
+  - RULE-SET, Google, AI
+  - RULE-SET, OpenAI, AI
+  - RULE-SET, TikTok, AI
+
+  - RULE-SET, GitHub, GitHub
+  - RULE-SET, Microsoft, Microsoft
+  - RULE-SET, Spotify, Spotify
+  - RULE-SET, Twitter, Twitter
+
+
+  - RULE-SET, Global, Bypass
+  - RULE-SET, GlobalDomains, Bypass
+
+  - RULE-SET, China, DIRECT
+  - RULE-SET, ChinaIPs, DIRECT
+  - RULE-SET, ChinaDomains, DIRECT
+
+  - MATCH, Final
+
+rule-anchor:
+  classical: &classical {type: http, interval: 86400, behavior: classical, format: text}
+  domain: &domain {type: http, interval: 86400, behavior: domain, format: text}
+  ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: text}
+
+rule-providers:
+ 
+  Apple:
+    <<: *classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple.list"
+
+  AppleDomains:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple_Domain.txt"
+
+  Copilot:
+    <<: *classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Copilot/Copilot.list"
+
+
+  Gemini:
+    <<: *classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Gemini/Gemini.list"
+
+  GitHub:
+    <<: *classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub.list"
+
+  Google:
+    <<: *classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google.list"
+
+  Microsoft:
+    <<: *classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft.list"
+  
+  OpenAI:
+    <<: *classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.list"
+
+  Spotify:
+    <<: *classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Spotify/Spotify.list"
+
+  TikTok:
+    <<: *classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TikTok/TikTok.list"
+
+  Twitter:
+    <<: *classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitter/Twitter.list"
+
+  Direct:
+    <<: *classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Direct/Direct.list"
+
+  Lan:
+    <<: *classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Lan/Lan.list"
+
+
+  Global:
+    <<: *classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Global/Global.list"
+
+  GlobalDomains:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Global/Global_Domain.txt"
+
+  China:
+    <<: *classical
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/China/China.list"
+
+  ChinaIPs:
+    <<: *ip
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaIPs/ChinaIPs.list"
+
+  ChinaDomains:
+    <<: *domain
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/China/China_Domain.txt"
