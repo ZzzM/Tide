@@ -16,7 +16,7 @@ config.inbounds[1].listen_port = parseInt(port)
 config.outbounds.push(...proxies)
 
 config.outbounds.map(i => {
-  if (['Automatic', 'Manual'].includes(i.tag)) {
+  if (['Automatic', 'Manual', 'AI'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies))
   }
 })

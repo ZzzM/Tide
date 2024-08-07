@@ -19,11 +19,12 @@
     "servers": [
       {
         "tag": "Bypass",
-        "address": "tls://8.8.8.8"
+        "address": "h3://1.1.1.1/dns-query",
+        "detour": "Bypass"
       },
       {
         "tag": "DIRECT",
-        "address": "https://223.5.5.5/dns-query",
+        "address": "quic://223.5.5.5",
         "detour": "DIRECT"
       },
       {
@@ -122,10 +123,9 @@
       "outbounds": ["DIRECT"]
     },
     {
-      "tag": "Global",
+      "tag": "AI",
       "type": "selector",
-      "outbounds": ["Bypass", "DIRECT"],
-      "default": "Bypass"
+      "outbounds": []
     },
     {
       "tag": "China",
@@ -174,8 +174,8 @@
         "outbound": "DIRECT"
       },
       {
-        "rule_set": ["Global"],
-        "outbound": "Global"
+        "rule_set": ["AI"],
+        "outbound": "AI"
       },
       {
         "rule_set": ["China", "ChinaIPs"],
@@ -183,6 +183,12 @@
       }
     ],
     "rule_set": [
+      {
+        "tag": "AI",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/ai.srs"
+      },
       {
         "tag": "Private",
         "type": "remote",
