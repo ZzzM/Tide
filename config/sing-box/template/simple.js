@@ -1,4 +1,4 @@
-const { type, name, port } = $arguments
+const { type, name } = $arguments
 
 let compatible_tag = 'REJECT'
 let config = JSON.parse($files[0])
@@ -8,10 +8,6 @@ let proxies = await produceArtifact({
   platform: 'sing-box',
   produceType: 'internal',
 })
-
-config.inbounds[0].platform.http_proxy.server_port = parseInt(port)
-
-config.inbounds[1].listen_port = parseInt(port)
 
 config.outbounds.push(...proxies)
 
